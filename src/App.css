@@ -108,3 +108,27 @@ input:focus, select:focus, textarea:focus{ border-color: var(--border-input-focu
 }
 
 .form-input .btn{ margin: 0 .5rem}
+
+.password-generated {
+  display: flex;
+  justify-content: space-around;
+  margin: 1rem 0;
+}
+.password-generated button {
+  border: 1px solid lightgray;
+  padding: 0 1rem;
+  height: 2rem;
+  border-radius: .5rem;
+  background-color: #fefefe;
+  font-size: 1.3rem;
+  outline: none;
+  transition: background .5s, color .5s;
+}
+.password-generated button:hover {
+  cursor: pointer;
+  color: gray;
+}
+
+.password-generated p {
+  margin: auto 0
+}

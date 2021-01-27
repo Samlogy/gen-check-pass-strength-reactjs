@@ -1,11 +1,16 @@
 import React, { useState } from "react";
 import generator from "generate-password";
+import copy from "copy-to-clipboard";
+
+import { HiClipboardCopy, HiClipboardCheck  } from 'react-icons/hi'
 
 const GenPass = () => {
   const [password, setPassword] = useState('');
   
   const initState = {length: 10, isLowerCase: true, isUpperCase: false, isNumbers: false, isSymbols: false}
   const [passSettings, setPassSettings] = useState(initState);
+
+  const [copyPass, setCopyPass] = useState({ textToCopy: '', textBtn: <HiClipboardCopy /> });
 
   const generatePassword = () => {
     const pwd = generator.generate({
@@ -16,15 +21,25 @@ const GenPass = () => {
       symbols: passSettings.isSymbols
     });
     setPassword(pwd);
+    setCopyPass({...copyPass, textToCopy: pwd});
   };
 
+  const handleCopy = () => {
+    copy(copyPass.textToCopy); 
+    setCopyPass({...copyPass, textBtn: <HiClipboardCheck />});
+  };
+
+  const reset = () => {
+    setPassword('');
+    setCopyPass({...copyPass, textBtn: <HiClipboardCopy />});
+  }
 
   return (
     <div className="generate-password-container">
         <div className='gen-password-options'>
             <div className='form-input'>
                 <label> Length </label> 
-                <input type='number' value={passSettings.length} min='1' onChange={e => setPassSettings({...passSettings, length: e.target.value})} />
+                <input type='number' value={passSettings.length} min='8' onChange={e => setPassSettings({...passSettings, length: e.target.value})} />
             </div>
 
             <div className='form-input'>
@@ -50,11 +65,12 @@ const GenPass = () => {
 
         <div className='form-input'> 
           <button className="btn btn-info" onClick={() => generatePassword()}> Generate PASSWORD </button>
-          <button className="btn-outline btn-outline-info" onClick={() => setPassword('')}> Reset PASSWORD </button>
+          <button className="btn-outline btn-outline-info" onClick={() => reset()}> Reset PASSWORD </button>
         </div>
 
         <div className='password-generated'>
-           <p> PASSWORD is: {password} </p> 
+           <p> PASSWORD is: <strong> {password} </strong> </p> 
+           <button onClick={() => handleCopy()} disabled={copyPass.textBtn === "Copied!"}> {copyPass.textBtn} </button>
         </div>
     </div>
   );

@@ -9,3 +9,4 @@ generated password can contain
     flexible password length (minimun length = 8) no maximum limit
 
  ### Check Password Strength:
+ 
