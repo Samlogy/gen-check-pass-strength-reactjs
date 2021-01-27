@@ -1,38 +1,110 @@
-.App {
+:root {
+  --bg-btn-info-hover-color: #23699e;
+  --info-color:#1890ff;
+  --btn-default-crud-text-color: #fff;
+}
+
+input, select, textarea{
+  border-radius: .5rem;
+  padding: .75rem 1rem;
+  border: 2px solid lightgray;
+  background-color: var(--bg-input-color);
+  outline: none;
+  color: rgb(68, 67, 67);
+  transition: all .25s ease-in-out;
+}
+textarea{ height: 7rem }
+input::placeholder, select::placeholder, textarea::placeholder{ color: var(--placeholder-color) }
+input:focus, select:focus, textarea:focus{ border-color: var(--border-input-focus) }
+
+.btn-outline{
+  padding: .75rem 1rem;
+  font-weight: 600;
+  outline: none;
+  cursor: pointer;
   text-align: center;
+  border-radius: .5rem;
+  background-color: transparent;
+  border: 1px solid #bbb;
+  color: #767676;
+  transition: all 150ms;
+}
+.btn-outline-info{
+  background-color: transparent;
+  border: 1px solid var(--info-color);
+  color: var(--info-color);
+  transition: all 150ms;
+}
+.btn-outline-info:hover{
+  background-color: var(--info-color);
+  color: var(--btn-default-color);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.btn{
+  border-radius: 5px;
+  border: 1px solid var(--border-default-color);
+  color: var(--btn-default-text-color);
+  padding: .75rem 1rem;
+  font-weight: 600;
+  outline: none;
+  cursor: pointer;
+  text-align: center;
+  transition: all .5s;
+}
+.btn-info{
+  background-color: var(--info-color);
+  color: var(--btn-default-crud-text-color);
+  font-weight: 600;
+  transition: all .5s;
+  border: 1px solid transparent;
+}
+.btn-info:hover{
+  background-color: var(--bg-btn-info-hover-color);
+  color: var(--btn-default-crud-text-color);
+  box-shadow: 0 0 0 0.25rem var(--bg-btn-info-hover-color)
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* check password */ 
+.App {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  border: 1px solid lightgray;
+  margin: 1rem;
+  border-radius: .5rem;
+  background-color: #eee
 }
 
-.App-link {
-  color: #61dafb;
+.option-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2rem auto;
+  width:  500px;
+}
+.check-password-container input[type="password"] {
+  margin-bottom: 1rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+/* generate password */
+.generate-password-container {
+  display: flex;
+  flex-direction: column;
 }
+.form-input {
+  display: flex; margin: .25rem 0
+}
+.form-input label {
+  margin: auto 1rem auto 0; width: 5rem; text-align: right;
+}
+.generate-password-container  input[type="number"] { width: 6rem }
+
+.gen-password-options {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 2rem;
+  align-items: center;
+}
+
+.form-input .btn{ margin: 0 .5rem}

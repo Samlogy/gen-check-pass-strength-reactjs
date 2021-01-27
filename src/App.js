@@ -1,23 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react'
 
-function App() {
+import './App.css';
+import { CheckPass, GenPass } from './components'
+
+const App = () => {
+  const [val, setVal] = useState('');
+
+  const checkOption = () => {
+    return val === 'check' ? <CheckPass /> :
+           val === 'gen' ? <GenPass /> :
+           console.log('Please select between generate and check password !');
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h2> Choose generate or check password strength </h2>
+      <select onChange={e => setVal(e.target.value)}> 
+        <option> Choose </option>
+        <option value='gen'> Generate Password </option>
+        <option value='check'> Check Password </option>
+      </select>
+
+      <div className='option-container'>
+        { (val && val) && checkOption() }
+      </div>
     </div>
   );
 }
